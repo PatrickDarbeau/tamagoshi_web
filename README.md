@@ -1,6 +1,6 @@
 # Tamagoshi Web
 
-Un Tamagotchi jouable dans le navigateur, en temps réel : un jour de jeu dure
+Un Tamagoshi jouable dans le navigateur, en temps réel : un jour de jeu dure
 environ **12 minutes réelles**. L'état de vos animaux évolue même quand vous
 n'avez pas la page ouverte — le temps écoulé est rattrapé à votre prochaine
 visite. 
