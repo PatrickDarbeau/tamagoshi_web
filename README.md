@@ -1,20 +1,10 @@
-<h1></center>🥚 Tamagoshi</center></h1>
- **<center>par Patrick DARBEAU © 2026 - Version 1.0</center>**
-<h1></h1>
-
-Découvrez les Tamagoshi, de petites créatures virtuelles venues de la lointaine planète du même nom. Depuis leur arrivée sur Terre en 1996, elles ont conquis des millions d’utilisateurs grâce à leur personnalité unique et leur charme irrésistible.
-
-Les Tamagoshi adorent qu’on prenne soin d’eux : les nourrir, jouer avec eux et les accompagner dans leur évolution. Parfois un peu capricieux ou maladroits, ils restent toujours attachants et remplissent chaque journée de surprises.
-
-Étranges, farfelus, mais incroyablement mignons, les Tamagoshi grandissent avec vous et deviennent rapidement une véritable présence dans votre quotidien.
-Un compagnon virtuel à choyer, à découvrir… et à aimer.
-
 # Tamagoshi Web
 
-Un Tamagoshi jouable dans le navigateur, en temps réel : un jour de jeu dure
+Un Tamagotchi jouable dans le navigateur, en temps réel : un jour de jeu dure
 environ **12 minutes réelles**. L'état de vos animaux évolue même quand vous
 n'avez pas la page ouverte — le temps écoulé est rattrapé à votre prochaine
-visite. 
+visite. Inspiré des classes `Animal` / `Provision` du prototype PHP présent
+dans `../tamagoshi`.
 
 ## Prérequis
 
@@ -24,7 +14,7 @@ visite.
 ## Installation
 
 ```bash
-git clone https://github.com/PatrickDarbeau/tamagoshi_web
+git clone <url-du-dépôt>
 cd tamagoshi_web
 pip install -r requirements.txt
 ```
@@ -76,6 +66,10 @@ décroissance ×0,4) que le jour :
   des valeurs correctes, sinon elle diminue. **Si la santé tombe à 0,
   l'animal meurt.**
 
+👶 Les **bébés** sont fragiles : leur santé chute deux fois plus vite en cas
+de négligence et régénère deux fois plus lentement que les autres stades —
+ils demandent des soins plus attentifs.
+
 ### Actions
 
 | Action | Effet | Recharge |
@@ -96,7 +90,9 @@ décroissance ×0,4) que le jour :
 | 🍉 Pastèque | -20 | -30 | — | — | — |
 | 🥣 Croquettes *(rare, 1 chance sur 20)* | = 0 % | = 0 % | = 100 % | = 100 % | = 90 % |
 
-Les Croquettes sont les seules provisions qui peuvent régénérer l'animal et le sauver d'une mort certaine, — et aussi les seules à salir l'animal.
+Les Croquettes sont les seules provisions qui peuvent régénérer l'animal et le sauver d'une mort certaine, — mais aussi les seules à salir l'animal.
+
+N.B. : Vous pouvez faire des réserves de provisions à l'avance avant d'adopter votre premier l'animal.
 
 ### Horloge du jeu
 
