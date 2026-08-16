@@ -1,0 +1,62 @@
+{
+  "cree_le": "2026-08-16T15:07:28.805074+00:00",
+  "dernier_maj": "2026-08-16T15:45:13.356874+00:00",
+  "minutes_jeu_ecoulees": 4529.1035999999995,
+  "animaux": [],
+  "provisions": [
+    {
+      "type": "Eau",
+      "nom": "Eau",
+      "emoji": "💧",
+      "impact_faim": 0,
+      "impact_soif": -40,
+      "impact_sante": 0,
+      "impact_humeur": -20,
+      "id": "77166afb1e0f45ab986e06242cdcd000"
+    },
+    {
+      "type": "Pasteque",
+      "nom": "Pastèque",
+      "emoji": "🍉",
+      "impact_faim": -20,
+      "impact_soif": -30,
+      "impact_sante": 0,
+      "impact_humeur": 0,
+      "id": "d895fcdd898f462580b370aec097a246"
+    },
+    {
+      "type": "Pasteque",
+      "nom": "Pastèque",
+      "emoji": "🍉",
+      "impact_faim": -20,
+      "impact_soif": -30,
+      "impact_sante": 0,
+      "impact_humeur": 0,
+      "id": "820d611ecb0b4353acc6c35914d3371c"
+    },
+    {
+      "type": "Coca",
+      "nom": "Coca",
+      "emoji": "🥤",
+      "impact_faim": 0,
+      "impact_soif": -10,
+      "impact_sante": 0,
+      "impact_humeur": 30,
+      "id": "cd66614f51cc4708bedd32d82bab7f0d"
+    },
+    {
+      "type": "Eau",
+      "nom": "Eau",
+      "emoji": "💧",
+      "impact_faim": 0,
+      "impact_soif": -40,
+      "impact_sante": 0,
+      "impact_humeur": -20,
+      "id": "19a4b6f7a2bc4573bab05237547d33dd"
+    }
+  ],
+  "prochaine_recolte": "2026-08-16T15:07:55.349175+00:00",
+  "messages": [],
+  "en_pause": false,
+  "vitesse": 1.0
+}
