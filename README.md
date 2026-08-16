@@ -1,3 +1,6 @@
+<h1></center>🥚 Tamagoshi</center></h1>
+    <span class="auteur"><center>par Patrick DARBEAU © 2026 - Version 1.0</center></span>
+
 Découvrez les Tamagoshi, de petites créatures virtuelles venues de la lointaine planète du même nom. Depuis leur arrivée sur Terre en 1996, elles ont conquis des millions d’utilisateurs grâce à leur personnalité unique et leur charme irrésistible.
 
 Les Tamagoshi adorent qu’on prenne soin d’eux : les nourrir, jouer avec eux et les accompagner dans leur évolution. Parfois un peu capricieux ou maladroits, ils restent toujours attachants et remplissent chaque journée de surprises.
