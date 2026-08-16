@@ -92,8 +92,7 @@ décroissance ×0,4) que le jour :
 | 🍉 Pastèque | -20 | -30 | — | — | — |
 | 🥣 Croquettes *(rare, 1 chance sur 20)* | = 0 % | = 0 % | = 100 % | = 100 % | = 90 % |
 
-Les Croquettes sont les seules provisions à imposer des valeurs fixes plutôt
-que d'ajuster les jauges courantes — et les seules à salir l'animal.
+Les Croquettes sont les seules provisions qui peuvent régénérer l'animal et le sauver d'une mort certaine, — et aussi les seules à salir l'animal.
 
 ### Horloge du jeu
 
