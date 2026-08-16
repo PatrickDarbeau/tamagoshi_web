@@ -13,7 +13,7 @@ visite.
 ## Installation
 
 ```bash
-git clone <url-du-dépôt>
+git clone https://github.com/PatrickDarbeau/tamagoshi_web
 cd tamagoshi_web
 pip install -r requirements.txt
 ```
