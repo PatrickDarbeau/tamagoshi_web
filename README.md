@@ -2,7 +2,7 @@ Découvrez les Tamagoshi, de petites créatures virtuelles venues de la lointain
 
 Les Tamagoshi adorent qu’on prenne soin d’eux : les nourrir, jouer avec eux et les accompagner dans leur évolution. Parfois un peu capricieux ou maladroits, ils restent toujours attachants et remplissent chaque journée de surprises.
 
-Étranges, farfelus, mais incroyablement mignons, les Tamagotchi grandissent avec vous et deviennent rapidement une véritable présence dans votre quotidien.
+Étranges, farfelus, mais incroyablement mignons, les Tamagoshi grandissent avec vous et deviennent rapidement une véritable présence dans votre quotidien.
 Un compagnon virtuel à choyer, à découvrir… et à aimer.
 
 # Tamagoshi Web
