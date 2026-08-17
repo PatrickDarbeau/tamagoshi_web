@@ -334,7 +334,10 @@ button:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
 }
 .mood-sick .sweat { opacity: 1; animation: goutte 1.4s ease-in infinite; }
 @keyframes goutte { 0% { transform: translateY(-4px); opacity: 0;} 30% {opacity: 1;} 100% { transform: translateY(6px); opacity: 0; } }
-.mood-sick .body { filter: saturate(0.6) brightness(0.96); }
+.mood-sick .body {
+  background: linear-gradient(160deg, #ffb3b3, #ff4d4d) !important;
+  filter: saturate(0.85) brightness(0.96);
+}
 
 .mood-dirty .poop-layer .poop { display: block; }
 .poop-layer .poop { display: none; }
