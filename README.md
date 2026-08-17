@@ -74,7 +74,7 @@ ils demandent des soins plus attentifs.
 
 | Action | Effet | Recharge |
 |---|---|---|
-| 🍔 Nourrir | selon la provision utilisée (voir ci-dessous) | 12 s |
+| 🍔 Nourrir | selon la provision utilisée (voir ci-dessous), +10 saleté à chaque repas | 12 s |
 | 💉 Soigner | +25 santé | 45 s |
 | 🤗 Caresser | +15 humeur | 6 s |
 | 🧹 Nettoyer | remet la propreté à 0 | 4 s |
@@ -88,9 +88,12 @@ ils demandent des soins plus attentifs.
 | 💧 Eau | — | -40 | — | -20 | — |
 | 🍔 Hamburger | -100 | +30 | -10 | — | — |
 | 🍉 Pastèque | -20 | -30 | — | — | — |
-| 🥣 Croquettes *(rare, 1 chance sur 20)* | = 0 % | = 0 % | = 100 % | = 100 % | = 90 % |
+| 🥣 Croquettes *(rare, 1 chance sur 20)* | — | +10 | +20 | +50 | +50 |
+| 💊 Médicaments *(rare, 1 chance sur 25)* | — | +30 | +50 | -20 | +80 |
 
-Les Croquettes sont les seules provisions qui peuvent régénérer l'animal et le sauver d'une mort certaine, — mais aussi les seules à salir l'animal.
+Les Croquettes et les Médicaments sont les seules provisions à donner de la
+santé — mais aussi les seules à salir l'animal à cause des effets secondaires
+(les Médicaments pénalisent en plus l'humeur, mauvais goût oblige).
 
 N.B. : Vous pouvez faire des réserves de provisions à l'avance avant d'adopter votre premier l'animal.
 
