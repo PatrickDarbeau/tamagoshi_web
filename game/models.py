@@ -30,10 +30,17 @@ SANTE_PENALITE_SOIF = 8
 SANTE_PENALITE_HUMEUR = 5
 SANTE_PENALITE_SALETE = 5
 
+SALETE_PAR_REPAS = 10  # manger salit un peu, quelle que soit la provision
+
 SEUIL_FAIM_CRITIQUE = 90
 SEUIL_SOIF_CRITIQUE = 90
 SEUIL_HUMEUR_CRITIQUE = 15
 SEUIL_SALETE_CRITIQUE = 90
+
+# Les bébés sont fragiles : leur santé chute plus vite en cas de négligence
+# et régénère plus lentement, ce qui demande des soins plus attentifs.
+SANTE_PENALITE_MULTIPLICATEUR = {"bebe": 2.0}
+SANTE_REGEN_MULTIPLICATEUR = {"bebe": 0.5}
 
 REPRODUCTION_CHANCE = 0.2  # par jour en jeu, si adulte en bonne santé
 
@@ -50,6 +57,7 @@ class Provision:
     impact_soif = 0
     impact_sante = 0
     impact_humeur = 0
+    impact_proprete = 0
 
     def to_dict(self):
         return {
@@ -60,16 +68,18 @@ class Provision:
             "impact_soif": self.impact_soif,
             "impact_sante": self.impact_sante,
             "impact_humeur": self.impact_humeur,
+            "impact_proprete": self.impact_proprete,
         }
 
     def appliquer(self, animal):
-        """Applique l'effet de la provision à l'animal (par défaut, ajoute
-        les impacts aux jauges courantes ; une sous-classe peut surcharger
-        pour imposer des valeurs absolues, cf. Croquettes)."""
+        """Applique l'effet de la provision à l'animal : ajoute les impacts
+        aux jauges courantes (une sous-classe peut surcharger pour un
+        comportement différent)."""
         animal.faim += self.impact_faim
         animal.soif += self.impact_soif
         animal.sante += self.impact_sante
         animal.humeur += self.impact_humeur
+        animal.proprete += self.impact_proprete
 
 
 class Coca(Provision):
@@ -102,23 +112,25 @@ class Pasteque(Provision):
 
 
 class Croquettes(Provision):
-    """Provision rare et complète : régale l'animal. Contrairement aux
-    autres provisions (impacts additionnés aux jauges courantes), les
-    Croquettes imposent des valeurs absolues, y compris pour la propreté
-    qui n'est normalement pas affectée par un repas."""
+    """Provision rare : régale l'animal (gros gain de santé et d'humeur),
+    mais très riche — donne soif et salit copieusement."""
     nom = "Croquettes"
     emoji = "🥣"
-    impact_faim = -100
-    impact_soif = -100
-    impact_sante = 100
-    impact_humeur = 100
+    impact_soif = 10
+    impact_sante = 20
+    impact_humeur = 50
+    impact_proprete = 50
 
-    def appliquer(self, animal):
-        animal.faim = 0
-        animal.soif = 0
-        animal.sante = 100
-        animal.humeur = 100
-        animal.proprete = 90
+
+class Medicaments(Provision):
+    """Gros soin de santé, mais désagréable à prendre : donne soif, plombe
+    l'humeur et salit beaucoup."""
+    nom = "Médicaments"
+    emoji = "💊"
+    impact_soif = 30
+    impact_sante = 50
+    impact_humeur = -20
+    impact_proprete = 80
 
 
 PROVISION_CLASSES = {
@@ -127,6 +139,7 @@ PROVISION_CLASSES = {
     "Hamburger": Hamburger,
     "Pasteque": Pasteque,
     "Croquettes": Croquettes,
+    "Medicaments": Medicaments,
 }
 
 # Poids de tirage : le Hamburger est plus rare que les autres provisions
@@ -137,6 +150,10 @@ PROVISION_POIDS = {
     "Hamburger": 2,
     "Pasteque": 4,
 }
+# Les Médicaments sont exceptionnels : 1 tirage sur 25 en moyenne, quel que
+# soit le réglage des poids ci-dessus (w tel que w / (S + w) = 1/25).
+PROVISION_POIDS["Medicaments"] = sum(PROVISION_POIDS.values()) / 24
+
 # Les Croquettes sont exceptionnelles : 1 tirage sur 20 en moyenne, quel
 # que soit le réglage des poids ci-dessus (w tel que w / (S + w) = 1/20).
 PROVISION_POIDS["Croquettes"] = sum(PROVISION_POIDS.values()) / 19
@@ -216,6 +233,7 @@ class Animal:
     def nourrir(self, provision):
         if self.est_vivant():
             provision.appliquer(self)
+            self.proprete += SALETE_PAR_REPAS
             self._verifier_etat()
 
     def nettoyer(self):
@@ -233,6 +251,8 @@ class Animal:
             return None
 
         heures = (dt_minutes / 60) * multiplicateur_nuit
+        mult_penalite = SANTE_PENALITE_MULTIPLICATEUR.get(self.stage, 1.0)
+        mult_regen = SANTE_REGEN_MULTIPLICATEUR.get(self.stage, 1.0)
 
         self.faim += FAIM_PAR_HEURE * heures
         self.soif += SOIF_PAR_HEURE * heures
@@ -241,17 +261,17 @@ class Animal:
         self._verifier_etat()
 
         if self.faim >= SEUIL_FAIM_CRITIQUE:
-            self.sante -= SANTE_PENALITE_FAIM * heures
+            self.sante -= SANTE_PENALITE_FAIM * heures * mult_penalite
         if self.soif >= SEUIL_SOIF_CRITIQUE:
-            self.sante -= SANTE_PENALITE_SOIF * heures
+            self.sante -= SANTE_PENALITE_SOIF * heures * mult_penalite
         if self.humeur <= SEUIL_HUMEUR_CRITIQUE:
-            self.sante -= SANTE_PENALITE_HUMEUR * heures
+            self.sante -= SANTE_PENALITE_HUMEUR * heures * mult_penalite
         if self.proprete >= SEUIL_SALETE_CRITIQUE:
-            self.sante -= SANTE_PENALITE_SALETE * heures
+            self.sante -= SANTE_PENALITE_SALETE * heures * mult_penalite
 
         if (self.faim < 70 and self.soif < 70 and self.humeur > 50
                 and self.proprete < 70):
-            self.sante += SANTE_REGEN_PAR_HEURE * heures
+            self.sante += SANTE_REGEN_PAR_HEURE * heures * mult_regen
 
         etait_vivant = self.vivant
         self._verifier_etat()
